@@ -1,0 +1,45 @@
+<div class="container-fluid">
+           <div class="row" style="margin-top:80px; margin-bottom:80px;">
+               <div class="col-md-2"></div>
+               <div class="col-md-7">
+               <div ng-if="blogsWaitingApproval.length==0">No Blogs Waiting for Approval</div>
+                <ul style="list-style:none;"> 
+                    <li ng-repeat="blogPost in blogsWaitingApproval">
+                            <div class="card" style="border:1px solid black; margin-top:20px;">
+                                    <div class="card-body" style="padding:0px 30px; margin-top:10px;">
+                                    <h6 class="card-title text-center" style="background-color:">{{blogPost.b_title}}</h6>
+                                    <p class="card-text">
+                                        <div class="row">
+                                            <div class="col-md-12 text-center"><i class="fa fa-user" aria-hidden="true"></i>&emsp;{{blogPost.b_postedByUn}}</div>
+                                        
+                                        </div>
+                                        <div class ="row" style="margin-top:10px;">
+                                        	<div class="col-md-12 text-center"><i class="fa fa-phone" aria-hidden="true"></i>&emsp;{{blogPost.b_postedBy}}</div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-12 text-center"><i class="fa fa-calendar"></i>&emsp;{{blogPost.b_datePostedOn | date : "dd.MM.y"}}</div>
+                                        </div>
+                                        <div class="row" style="margin-top:20px;">
+                                            <div class="col-md-12 text-center"><i class="fa fa-pencil"></i>&emsp;Content</div>
+                    
+                                        </div>
+                                        <div class="row" style="margin-top:15px;padding:10px 10px">
+                                            {{blogPost.b_content | limitTo : 100}}
+                                            
+                                        </div>
+                                        <div class="row" style="margin-top:30px;">
+                                            <div class="col-md-12 text-center">
+                                                <a href="#/getBlog/{{blogPost.b_id}}" class="btn btn-secondary btn-sm">View Article&nbsp;<i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                &emsp;&emsp;&emsp;<button ng-click="approveBlogPost(blogPost)" class="btn btn-success btn-sm">Approve Article&nbsp;<i class="fa fa-check" aria-hidden="true"></i></button>
+                                                &emsp;&emsp;&emsp;<button ng-click="rejectBlog(blogPost)" class="btn btn-danger btn-sm">Reject Article&nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                    </li>
+                </ul>
+               </div>
+               <div class="col-md-3"></div>
+        </div>
+    </div>

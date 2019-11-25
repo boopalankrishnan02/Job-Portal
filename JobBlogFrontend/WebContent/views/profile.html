@@ -1,0 +1,54 @@
+<div >
+            <div class="row" id="prbg">
+                <div class="col-md-4"></div>
+                <div class="col-md-4" style="margin-top:68px; margin-bottom:60px;border:0px solid black;box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.5);background-color:#dbdbdb;">
+                    <div class="row" style="padding:40px 50px;"><div class="col-md-12 text-center">
+                        <img id="imbg" src="http://localhost:8080/JobBlogFrontend/getimage/{{user.u_phoneNumber}}" width="150" height="150" style="background:url(unnamed.jpg);background-size:contain;border:2px solid white;min-height:150px;min-width:150px;border-radius:75px;box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);">
+                        <br/><br/>
+                        <p style="color:#2ab07a;">Change Profile Picture&nbsp;<i class="fa fa-arrow-down" aria-hidden="true"></i></p>
+                     <form name="profilepic" action="http://localhost:8080/JobBlogFrontend/uploadimage" method="post" enctype="multipart/form-data">
+                        <input type="file" ng-required="true" accept="image/*" name="image" style="margin-left:90px;">
+                        <button style="margin-top:10px;" type="submit" data-toggle="tooltip" data-placement="bottom" title="Upload Profile Picture" class="btn btn-success btn-sm"><i class="fa fa-upload" aria-hidden="true"></i></button>
+                    </form>  
+                    </div></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-dark text-center" style="box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);">
+                                <tbody>
+                                    <tr>
+                                        <td>User Name</td>
+                                        <td>{{user.u_name}}</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>Mobile Number</td>
+                                        <td>{{user.u_phoneNumber}}</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>E-mail</td>
+                                        <td>{{user.u_email}}</td>
+          
+                                    </tr>
+                                    <tr>
+                                        <td>Password</td>
+                                        <td>{{user.u_password}}</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                    	<td colspan="2"><a href="#/blogForm"><i class="fa fa-pencil-square-o"></i>&nbsp;Write an article on Project Job</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" ></div>
+            </div>
+            
+
+
+
+        </div>
+        
+       

@@ -1,0 +1,66 @@
+<div>
+            <div class="row" id="blbg">
+                <div class="col-md-2"></div>
+                <div class="col-md-7" style="margin-top: 80px; margin-bottom: 80px;">
+                    <div class="card" style="box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);background-color:#ededed">
+                        <div class="card-body">
+                            <div class="card-title text-center" style="margin-top:10px;"><h3>{{blogPost.b_title}}</h3></div><hr/>
+                            <div class="card-text" style="padding:20px 30px;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div ><pre style="white-space:pre-wrap;">
+{{blogPost.b_content}}
+											</pre>
+                                        </div>
+                                    </div>
+                                </div>  <hr/>
+                                <div class="row">
+                                    <div class="col-md-6"><i class="fa fa-user" aria-hidden="true"></i>&emsp;{{blogPost.b_postedByUn}}</div>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6" style="margin-top:10px;"><i class="fa fa-calendar" aria-hidden="true"></i>&emsp;{{blogPost.b_datePostedOn | date : "dd.MM.y"}}</div>
+                                    <div class="col-md-6" style="text-align: right;"><button ng-click="like(blogPost)" class="btn btn-default btn-sm"><i style="color:green;" class="fa fa-thumbs-up fa-lg"></i></button>&nbsp;{{blogPost.likes}}&emsp;<button ng-click="dislike(blogPost)" class="btn btn-default btn-sm"><i style="color:red;" class="fa fa-thumbs-down fa-lg"></i></button>&nbsp;{{blogPost.dislikes}}&emsp;</div>
+                                </div>	<hr/> <br/>
+                                <b>Add a comment</b>    <br/>
+                                <textarea ng-required="true" ng-model="commentTxt" name="commentTxt" class="col-md-6" rows="3" style=" border-radius:5px; margin-top:10px;">
+
+                                </textarea>
+                                <span style="color:red;"><div style="margin-bottom:10px;">{{error}}</div></span>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" ng-click="addComment(blogPost,commentTxt)" class="btn btn-outline-primary btn-sm" style="color:blue;">Post your comment</button>
+                                    </div>	
+                                </div>  <br/>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="button" ng-click="getComments(blogPost.b_id)" class="btn btn-outline-secondary btn-sm">View All Comments</button>
+                                    </div>
+                                </div>  <br/>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <b>Comments&nbsp;<i class="fa fa-commenting-o" aria-hidden="true"></i></b>
+                                        <ul style="margin-top:20px;list-style: none;">
+                                        	<span ng-show="blogComments==''" style="color:green">Be the first one to comment on this blog</span>
+                                            <li ng-repeat="blogComment in blogComments | orderBy: '-bc_postedOn'"><i class="fa fa-user-o" aria-hidden="true"></i>&nbsp;<small><b>{{blogComment.commentedBy}}</b></small><br/>
+                                            <table class="table table-borderless">
+                                            	<tr>
+                                            	<td>{{blogComment.bc_text}}<td>
+                                            	<td class="text-right"><small><i class="fa fa-calendar-o" aria-hidden="true"></i>&nbsp;{{blogComment.bc_postedOn |  date :"dd.MM.y / hh.mm a"}}</small></td>
+                                            	</tr>
+                                            	<tr>
+                                                <td><button ng-click="deleteComment(blogComment)" ng-show="user.u_phoneNumber==blogComment.u_number" type="button" class="btn btn-outline-danger" style="font-size: 11px;">Remove comment&nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                                                </tr>
+                                            </table>
+                                              </li>	<hr/>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="height:720px;"></div>
+            </div>
+        </div>

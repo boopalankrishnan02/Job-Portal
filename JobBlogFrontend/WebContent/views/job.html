@@ -1,0 +1,53 @@
+
+<div>
+            <div class="row" id="jbbg">
+            	
+            	
+                <div class="col-md-3" style="margin-top:80px; margin-bottom:80px;">
+                </div>
+                    <div class="col-md-7" style="margin-top:80px; margin-bottom:80px;">
+                        <div class="card" style="background-color:#f2f5f7; box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);">
+                            <div class="card-body">
+                                <div class="card-title" style="color:dodgerblue;"><h4>{{job.jobTilte}}</h4></div>
+                                <div class="card-subtitle" style="font-size:20px;">{{job.companyName}}</div>
+                                <div class="card-text" style="margin-top:10px;">
+                                    <div class="row"><div class="col-md-6"><i class="fa fa-briefcase"></i>&emsp;{{job.experienceFrom}}-{{job.experienceTo}}&nbsp;yrs</div></div>
+                                    <div class="row"><div class="col-md-6" style="margin-top:10px;"><i class="fa fa-map-marker"></i>&emsp;{{job.jobLocation}}</div></div>
+                                    <div class="row"><div class="col-md-6" style="margin-top:10px;"><i class="fa fa-inr"></i>&emsp;{{job.salary}}</div></div>
+                                    <div class="row"><div class="col-md-6" style="margin-top:10px;">Openings: {{job.vaccancies}}</div></div>
+                                    <div class="row"><div class="col-md-6" style="margin-top:10px;">Posted On: {{job.datePostedOn | date : "dd.MM.y"}}</div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card" style="background-color:#ffffff; margin-top:5px; box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);">
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <div class="row"><div class="col-md-6" style="font-size: 17px;"><b>Job Description</b></div></div>
+                                    <div class="row"><div class="col-md-12">{{job.jobDescription}}</div></div>
+                                    <div class="row" style="margin-top:20px;"><div class="col-md-6"><span style="font-weight: 500;">Industry type :</span> {{job.category}}</div></div>
+                                    <div class="row" style="margin-top:10px;"><div class="col-md-6"><span style="font-weight: 500;">Employment Type :</span> {{job.employementType}}</div></div>
+                                    <div class="row" style="margin-top:15px;"><div class="col-md-6"><b>Skills Required</b></div></div>
+                                    <div class="row"><div class="col-md-12">{{job.skillsRequired}}</div></div>
+                                    <div class="row" style="margin-top:10px;"><div class="col-md-6"><b>Educational Qualifications</b></div></div>
+                                    <div class="row"><div class="col-md-6">{{job.education}}</div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card" style="background-color:#f2f5f7; margin-top:5px; box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);">
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <div class="row"><div class="col-md-6"><b>Contact Details</b></div></div>
+                                    <div class="row" style="margin-top:5px;"><div class="col-md-12">Contact Company : {{job.companyName}}</div></div>
+                                    <div class="row"><div class="col-md-6">Address : <Address>{{job.companyAddress}}</Address> </div></div>
+                                    <div class="row"><div class="col-md-12">Email Address : {{job.companyEmail}}</div></div>
+                                    <div class="row"><div class="col-md-6">Telephone : {{job.companyNumber}}</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-md-2"></div>
+            </div>
+
+        </div>

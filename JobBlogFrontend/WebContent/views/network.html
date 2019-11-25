@@ -1,0 +1,94 @@
+<div>
+            <div class="row" style="margin-top:60px;">
+                <div class="col-md-3" style="background-color:#c7c7c7; min-height: 680px;">
+                    <div class="row" style="margin-top:30px;">
+                        <div class="col-md-12 text-center"><button class="btn btn-info btn-block active">Your Friend List</button></div>
+                    </div> 
+
+                    <div class="row" style="margin-top:30px;">
+                        <div class="col-md-12 text-center">
+                            <form class="form-inline ">
+                                    <i class="fa fa-search fa-lg" aria-hidden="true"></i>&emsp;
+                                    <input class="form-control" type="text" placeholder="Find Your Friends"
+                                      ng-model="searchTxt.u_name" aria-label="Search">
+                            </form>
+                        </div>       
+                    </div>  
+
+                    <div class="row" style="margin-top:40px;">
+                        <div class="col-md-12 overflow-auto" style="height:450px;">
+                    <ul style="list-style: none;">
+                    <li ng-show="friendDetails==null">No Friends Yet....</li>
+                        <li ng-repeat="friends in friendDetails | filter : searchTxt">
+                        <table class="table">
+                            <tr>
+                                <td class="text-center">
+                                <img
+                                 src="http://localhost:8080/JobBlogFrontend/getimage/{{friends.u_phoneNumber}}" height="50" width="50" style="background:url(unnamed.jpg);background-size:contain;border:1px solid white; border-radius: 25px;"/></td>
+                                <td style="vertical-align: middle;"><h6>{{friends.u_name}}</h6></td>
+                                <td style="vertical-align: middle;"><button class="btn btn-default"><i style="color:green" title="Chat with {{friends.u_name}}" class="fa fa-commenting-o fa-2x"></i></button></td>
+                                <td style="vertical-align: middle;">
+                                	<div class="dropdown"><button class="btn btn-default bg-transparent dropdown-toggle" title="View User Details" style="color:white" id="dropdownmenuButton" type="button" data-toggle="dropdown">
+                					<i style="color:black;" class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                										</button>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="dropdownmenuButton">
+                    	<button class="dropdown-item bg-dark" style="color:white;"><i class="fa fa-phone" aria-hidden="true"></i>&emsp;{{friends.u_phoneNumber}}</button>
+                        <button class="dropdown-item bg-dark"  style="color:white;"><i class="fa fa-envelope-o" aria-hidden="true"></i>&emsp;{{friends.u_email}}</button>
+                        <button ng-click="deleteFriend(friends.u_id)" class="dropdown-item bg-dark" style="color:white;"><i class="fa fa-trash-o" aria-hidden="true"></i>&emsp;Remove {{friends.u_name}} from Friend List</button>
+                    </div>
+               						 </div>
+                                </td>
+                            </tr>
+                        </table>
+                        </li>
+                    </ul>
+                    </div>
+                    </div>
+                </div>
+                <div id="jbbg" class="col-md-6">
+                
+                </div>
+                <div class="col-md-3">
+                	<div class="row" style="height:350px; background-color:#c7c7c7;border : 1px solid black;">
+                                <div class="col-md-12" style="margin-top:10px;"><button class="btn btn-info btn-block active">Make New Friends</button>
+                                        <form class="form-inline" style="margin-top:10px;">
+                                                <i class="fa fa-search fa-lg" aria-hidden="true"></i>&emsp;
+                                                <input class="form-control form-control-sm" type="text" placeholder="Search User"
+                                                  ng-model="FsearchTxt.u_name" aria-label="Search" height="3">
+                                        </form>   
+                                        <div class="overflow-auto" style="height:250px;"> 
+                                        <ul style="list-style: none;">
+                                            <li style="margin-top:10px;" ng-repeat="user in suggestedUsers | filter : FsearchTxt">
+<img src="http://localhost:8080/JobBlogFrontend/getimage/{{user.u_phoneNumber}}" height="50" width="50" style="background:url(unnamed.jpg);background-size:contain;border:1px solid white;border-radius:25px;"/>&emsp;{{user.u_name}}&emsp;
+<button ng-click="sendRequest(user)" type="button" class="btn btn-primary btn-sm">Add Friend</button>
+<hr/>
+                                            </li>                                                                                                                                                                                 </li>   <hr/>
+                                        </ul>
+                                   		 </div>
+                                    </div>
+                            </div>
+
+
+					<div class="row" style="height:320px;background-color: #c7c7c7;border : 1px solid black;">
+                                
+                                <div class="col-md-12" style="margin-top:10px;"><button class="btn btn-info btn-block active">Pending Request</button></div>
+                                <div style="margin-left:120px;" ng-show="pendingRequests==null || pendingRequests==undefined"> No Pending Request</div>
+                               
+                               
+                                <div class="overflow-auto" style="height:150px;">
+                                
+                                    <ul style="list-style: none;">
+                                    
+                                        <li style="margin-top:5px;" ng-repeat="pendingRequest in pendingRequests">
+<img src="http://localhost:8080/JobBlogFrontend/getimage/{{pendingRequest.fromId.u_phoneNumber}}" height="50" width="50" style="background:url(unnamed.jpg);background-size:contain;border:1px solid white; border-radius: 25px;"/>&emsp;{{pendingRequest.fromId.u_name}}&emsp;
+<button ng-click="acceptRequest(pendingRequest)" type="button" class="btn btn-success btn-sm">Accept</button>&emsp;<button ng-click="deleteRequest(pendingRequest)" class="btn btn-danger btn-sm">Decline</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                	
+                </div>
+            </div>
+        </div>
+         

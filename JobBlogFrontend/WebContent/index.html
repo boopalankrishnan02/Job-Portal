@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Home Page</title>
+</head>
+
+<meta name="viewport" content="width device-width, initial-scale=1">
+
+ <!-- Latest compiled and minified CSS -->
+ 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<style type="text/css">
+	#Button{
+		background-color:#e0dd7b;
+	}
+     #Button:focus{
+            background-color:#154eab;
+            color:white;
+            }
+     #hbg{
+     	background-image:url("hbg1.jpg");
+     	background-repeat:no-repeat;
+     	background-size:cover;		
+     }
+     #sibg{
+     	background-image:url("signinbg.jpg");
+     	background-repeat:no-repeat;
+     	background-size:cover;
+     }
+     #rgbg{
+     	background-image:url("signinbg.jpg");
+     	background-repeat:no-repeat;
+     	background-size:cover;
+     }
+     #prbg{
+     	background-image:url("signinbg.jpg");
+     	background-repeat:no-repeat;
+     	background-size:cover;
+     }
+     #jbbg{
+     	background-image:url("jbbg.png");
+     	background-repeat:no-repeat;
+     	background-size:cover;
+     }
+     #blbg{
+     	background-image:url("blbg.jpg");
+     	background-repeat:no-repeat;
+     	background-size:cover;
+     }
+     /* #imbg{
+     	background-image:url("");
+     	min-height:150px;
+     	min-width:150px;
+     } */
+     ::-webkit-scrollbar{
+     	display:none;
+     }
+</style>
+    
+    
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+	<!-- fontawesome -->
+<script src="https://use.fontawesome.com/48d8fda2df.js"></script> 
+
+	<!-- sweetalert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	<!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+
+<!-- <script src="js/app.js"></script> -->
+
+ 
+
+
+<script>
+	var app=angular.module('app',['ngRoute','ngCookies'])
+	
+	app.config(function($routeProvider){
+		$routeProvider
+		.when('/login',{controller:'UserCtrl',templateUrl:'views/login.html'})
+		.when('/register',{controller:'UserCtrl',templateUrl:'views/register.html'})
+		.when('/jobform',{controller:'JobCtrl',templateUrl:'views/jobform.html'})
+		.when('/getAllJobs',{controller:'JobCtrl',templateUrl:'views/jobs.html'})
+		.when('/getJob/:id',{controller:'JobPageCtrl',templateUrl:'views/job.html'})
+		.when('/updateJobForm/:id',{controller:'JobCtrl',templateUrl:'views/updatejobform.html'})
+		.when('/updateProfile',{controller:'UserCtrl',templateUrl:'views/profile.html'})
+		.when('/blogForm',{controller:'BlogPostCtrl',templateUrl:'views/blogform.html'})
+		.when('/getAllBlogs',{controller:'BlogPostCtrl',templateUrl:'views/bloglist.html'})
+		.when('/blogsWaitingApproval',{controller:'BlogPostCtrl',templateUrl:'views/blogwaitingapproval.html'})
+		.when('/getBlog/:id',{controller:'BlogViewCtrl',templateUrl:'views/blog.html'})
+		.when('/updateBlog/:id',{controller:'BlogViewCtrl',templateUrl:'views/updateblogform.html'})
+		.when('/network',{controller:'FriendCtrl',templateUrl:'views/network.html'})
+		.otherwise({templateUrl:'views/home.html'})
+	})
+	
+	app.run(function($rootScope,$location,$cookieStore,UserService){
+		if($rootScope.user==undefined)
+			$rootScope.user=$cookieStore.get('UserDetails')
+			
+			$rootScope.logout=function(){
+			/* alert("Entering logout") */
+			UserService.logout().then(function(response){
+				/* alert("entering user service") */
+				console.log("Successfully logged out")
+				delete $rootScope.user
+				$cookieStore.remove('UserDetails')
+				$location.path('/login')
+			},function(response){
+				console.log("user number is null")
+				if($rootScope.user!=undefined)
+					delete $rootScope.user
+					$cookieStore.remove('UserDetails')
+					$location.path('/login')
+			})
+		}
+	})
+</script>
+
+	<!-- Services --> 
+<script src="services/userservice.js"></script> 
+<script src="services/jobservice.js"></script>
+<script src="services/jobpageservice.js"></script>
+<script src="services/blogpostservice.js"></script>
+<script src="services/friendservice.js"></script>
+<!-- <script src="services/chatservice.js"></script> -->
+	
+   <!-- controllers -->
+ <script src="controllers/usercontroller.js"></script>
+ <script src="controllers/jobcontroller.js"></script>
+ <script src="controllers/jobpagecontroller.js"></script>
+ <script src="controllers/blogpostcontroller.js"></script>
+ <script src="controllers/blogviewcontroller.js"></script>
+ <script src="controllers/friendcontroller.js"></script>
+<!--   <script src="controllers/chatcontroller.js"></script> -->
+
+ 
+<body ng-app="app">
+
+	<div class="container-fluid">
+        <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" style="box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.5)">
+            <a href="#/" class="navbar-brand">Project Job</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav ml-auto">
+            	<li ng-show="user.u_phoneNumber!=undefined&&user.u_role=='ADMIN'" class="nav-item">
+            		<a href="#/blogsWaitingApproval" title="Blogs waiting for approval" class="nav-link"><i style="color:white;" class="fa fa-clock-o fa-lg"></i></a>
+            	</li>&nbsp;
+            	<li ng-show="user.u_phoneNumber!=undefined" class="nav-item">
+            		<a id="lnms" href="#/network" data-toggle="tooltip" data-placement="bottom" title="My Network" class="nav-link"><i style="color:white;" class="fa fa-users fa-lg"></i></a>
+            	</li>&nbsp;
+            	<li ng-show="user.u_phoneNumber!=undefined" class="nav-item">
+            		<a id="ln" href="#/getAllBlogs" data-toggle="tooltip" data-placement="bottom"  title="Community Blog" class="nav-link"><i style="color:white;" class="fa fa-newspaper-o fa-lg"></i></a>
+            	</li>&nbsp;
+            	<li ng-show="user.u_phoneNumber!=undefined" class="nav-item">
+                <div class="dropdown"><button class="btn btn-default bg-dark dropdown-toggle" style="color:white" id="dropdownMenuButton" type="button" data-toggle="dropdown">
+                	<img src="http://localhost:8080/JobBlogFrontend/getimage/{{user.u_phoneNumber}}" width="25" height="25" style="background:url(unnamed.jpg);background-size:contain;min-height:25px;min-width:25px;border-radius:5px;">
+                </button>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+                    	<a class="dropdown-item bg-dark" href="#/updateProfile" style="color:white;">My Account</a>
+                        <button class="dropdown-item bg-dark" ng-click="logout()" style="color:white;">Logout</button>
+                    </div>
+                </div>
+            </li>
+                <li class="nav-item"><a  href="#/login" class="nav-link" style="color:white;">Sign In</a></li>
+                <li class="nav-item"><a  href="#/register" class="nav-link" style="color:white;">Register</a></li>
+            </ul>
+        </div>
+        </nav>
+        
+   		<div ng-view></div>
+  		
+   		<nav class="navbar fixed-bottom navbar-expand-md navbar-light" style="background-color:#032857; height:50px;box-shadow: 0px 0px 9px 3px rgba(0,0,0,0.5)">
+        <div class="navbar-nav">
+            <a href="" class="nav-item nav-link" style="color:white;">About Us</a>
+            <a href="" class="nav-item nav-link" style="color:white;">Contact Us</a>
+        </div>
+        <div class="navbar-nav mx-auto">
+            <p class="nav-item" style="color:white; font-size:12px; ">Copyright&#169;ProjectJob</p>
+        </div>
+        <div class="navbar-nav" style="font-size:25px">
+            <a href="" class="nav-item nav-link"><i style="color:white" class="fa fa-facebook"></i></a>
+            <a href="" class="nav-item nav-link"><i style="color:white" class="fa fa-twitter"></i></a>
+            <a href="" class="nav-item nav-link"><i style="color:white" class="fa fa-instagram"></i></a>
+            <a href="" class="nav-item nav-link"><i style="color:white" class="fa fa-google-plus"></i></i></i></a>
+        </div>
+        </nav>
+	</div>
+
+</body>
+
+ 
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+<script>
+$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	})
+</script>
+</html>

@@ -1,0 +1,23 @@
+<div>
+            <div class="row" id="jbbg">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <form name="blogForm" autocomplete="off" style="margin-top:100px; margin-bottom:80px; padding:30px 30px; box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.5)">
+                        <div class="form-group">
+                            <lable><h4>Title</h4></lable>
+                            <input ng-required="true" name="title" maxlength="50" type="text" class="form-control" pattern=".{5,50}" title="Title should be between 5 and 50 characters" ng-model="blogPost.b_title">
+                 			<span ng-show="blogForm.title.$error.pattern" style="color:red;"><small>* Title should be between 5 and 50 characters</small></span>
+                        </div>  <br/>
+                        <div class="form-group">
+                            <label><h4>Content&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i></h4></label>
+                            <textarea ng-required ="true" class="form-group col-md-12" rows="20" ng-model="blogPost.b_content"></textarea>
+                        </div>
+                        <div>
+                        <button ng-click="blogForm.$valid && updateBlogPost(blogPost)" class="btn btn-success btn-block">Submit Article</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>

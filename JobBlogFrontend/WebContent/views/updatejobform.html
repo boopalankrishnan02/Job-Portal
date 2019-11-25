@@ -1,0 +1,109 @@
+<div>
+<div class="row" id="jbbg">
+<div class="col-md-4"></div>
+<div class="col-md-4">
+                        <form name="jobForm" autocomplete="off" style="margin-top:100px; margin-bottom:80px; padding:30px 30px; box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.5)"> 
+                                <div class="form-group">
+                                        <label for="companyName">Company Name</label>
+                                        <input ng-required="true" name="companyName" pattern=".{5,50}" title="Name must be between 5 to 50 characters" type="text" class="form-control" ng-model="job.companyName">
+                                        <span ng-show="jobForm.companyName.$error.pattern" style="color:red;"><small>* 5 to 50 characters</small></span>
+                                </div>
+                                <div class="form-group">
+                                  <label for="jobTilte">Job Title</label>
+                                  <input ng-required="true" required pattern=".{5,50}" name="jobTitle" title="Title must be between 5 to 50 characters" type="text" class="form-control" ng-model="job.jobTilte">
+                                  <span ng-show="jobForm.jobTitle.$error.pattern" style="color:red;"><small>* 5 to 50 characters</small></span>
+                                </div>
+                                <lable>Industry Type&nbsp;<span ng-show="jobForm.category.$error.required" style="color:red">*</span></lable> <br/>
+                                <div class="form-group">
+                                    <select ng-required="true" title="Please select a category" class="form-control" name="category" ng-model="job.category" style="margin-top:8px;">
+                                        <option value="Accounting & Legal">Accounting & Legal</option>
+                                        <option value="Manufacturing">Manufacturing</option>
+                                        <option value="Construction,Repair & Maintenance">Construction,Repair & Maintenance</option>
+                                        <option value="Information Technology">Information Technology</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Health Care">Health Care</option>
+                                        <option value="Retail">Retail</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Media">Media</option>
+                                        <option value="Restaurants,Bars & Food services">Restaurants,Bars & Food services</option>
+                                        <option value="BPO">BPO</option>
+                                    </select>
+                                    
+                                </div>
+                                <div class="form-group">
+                                        <label for="jobDescription">Description</label>
+                                        <textarea ng-required="true" name="description" pattern=".{5,220}" maxlength="220" title="5 to 220 chareacters" class="form-group col-md-12" ng-model="job.jobDescription" rows="3" style=" border-radius:5px;"></textarea>
+                                        <span ng-show="jobForm.description.$error.maxlength" style="color:red;"><small>* 5 to 220 characters</small></span>
+                                </div>
+                                <lable>Employement Type&nbsp;<span ng-show="jobForm.employementType.$error.required" style="color:red;">*</span></lable> <br/>
+                                <div class="form-check form-check-inline" style="margin-top:8px;">
+                                    <input ng-required="true" class="form-check-input" type="radio" name="employementType" ng-model="job.employementType" value="permanent">
+                                    <lable class="form-check-lable" for="permanent">Permanent</lable>
+                                </div>
+                                 <div class="form-check form-check-inline" style="margin-top:8px;">
+                                     <input ng-required="true" class="form-check-input" type="radio" name="employementType" ng-model="job.employementType" value="temporary">
+                                     <lable class="form-check-lable" for="temporary">Temporary</lable>
+                                 </div>   
+                                 <br/>  <br/>
+                                <div class="form-group">
+                                        <label for="education">Educational Qualifications</label>
+                                        <input ng-required="true" name="education" pattern=".{5,220}" maxlength="220" title=" 5 to 220 chareacters" type="text" class="form-control" ng-model="job.education">
+                                        <span ng-show="jobForm.education.$error.pattern" style="color:red;"><small>* 5 to 220 characters</small></span>
+                                </div>
+                                <div class="form-group">
+                                        <label for="skillsRequired">Skills Required</label>
+                                        <input ng-required="true" name="skills" pattern=".{5,220}" title="5 to 220 chareacters" type="text" class="form-control" ng-model="job.skillsRequired">
+                               			<span ng-show="jobForm.skills.$error.pattern" style="color:red;"><small>* 5 to 220 characters</small></span>
+                                </div>
+                                    <div class="form-row">
+                                            <div class="col">
+                                                    <label for="experienceFrom">Min Experience</label>
+                                                    <input ng-required="true" name="min" pattern="([0-9]|[1-3][0-9]|40)" title="Enter a valid Number below 40" type="text" class="form-control" ng-model="job.experienceFrom">
+                                            		<span ng-show="jobForm.min.$error.pattern" style="color:red;"><small>* Enter a valid Number below 40</small></span>
+                                            </div>
+                                            <div class="col">
+                                                    <label for="experienceTo">Max Experience</label>
+                                                    <input ng-required="true" name="max" pattern="([0-9]|[1-3][0-9]|40)" title="Enter a valid Number below 40" type="text" class="form-control" ng-model="job.experienceTo">
+                                            		<span ng-show="jobForm.max.$error.pattern" style="color:red;"><small>* Enter a valid Number below 40</small></span>
+                                            </div>
+                                     </div>
+                                     <br/>
+
+                                <div class="form-group">
+                                  <label for="jobLocation">Job Location</label>
+                                  <input ng-required="true" name="location" pattern="^[a-zA-Z,. ]{3,40}" title="Minimum 3 to Maximum 40 characters" type="text" class="form-control" ng-model="job.jobLocation" placeholder="Incase of Many Locations seperate them by comma(,)">
+                                	<span ng-show="jobForm.location.$error.pattern" style="color:red;"><small>* Minimum 3 to Maximum 40 characters</small></span>
+                                </div>
+                                <div class="form-group">
+                                        <label for="salary">Salary(per annum)</label>
+                                        <input ng-required="true" name="salary" pattern="^[0-9]{0,10}" title="Enter a valid input, No special characters are allowed" type="text" class="form-control" ng-model="job.salary" placeholder="Enter 0 if you do not wish to disclose the salary">
+                                		<span ng-show="jobForm.salary.$error.pattern" style="color:red;"><small>* Enter a valid input, No special characters or text are allowed</small></span>
+                                </div>
+                                 <div class="form-group">
+                                        <lable for="companyAddress">Company Address<lable>
+                                         <textarea ng-required="true" name="companyaddress" pattern=".{5,220}" maxlength="220" title="Address must be between 5 to 220 characters" class="form-group col-md-12" ng-model="job.companyAddress" rows="3" style=" border-radius:5px;"></textarea>
+                                         <span ng-show="jobForm.companyaddress.$error.pattern" style="color:red;"><small>* Address must be between 5 to 220 characters</small></span>
+                                </div>
+                                <div class="form-group">
+                                                <label for="companyNumber">Contact Number</label>
+                                                <input ng-required="true" name="number" pattern="[6789][0-9]{9}" title="Please Enter a valid Mobile Number" type="tel" class="form-control" ng-model="job.companyNumber">
+                                				<span ng-show="jobForm.number.$error.pattern" style="color:red;"><small>* Please Enter a valid Mobile Number</small></span>
+                                				 </div>
+                                <div class="form-group">
+                                                <label for="companyEmail">E-mail</label>
+                                                <input ng-required="true" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="email" class="form-control" ng-model="job.companyEmail">
+                                				<span ng-show="jobForm.email.$error.pattern" style="color:red;"><small>* Enter a valid email</small></span>
+                                </div>
+                                <div class="form-group">
+                                        <label for="vaccancies">No.of Vaccancies</label>
+                                        <input ng-required="true" name="vaccancy" pattern="^[0-9]{1,3}" title="Enter a number between 1 to 999" type="text" class="form-control" ng-model="job.vaccancies">
+                                		<span ng-show="jobForm.vaccancy.$error.pattern" style="color:red;"><small>* Enter a number between 1 to 999</small></span>
+                                </div>
+                                <br/>
+
+                                <button ng-click="jobForm.$valid && updateJob(job)" class="btn btn-success btn-block">Update Job</button>
+                              </form>
+                </div>
+                <div class="col-md-4"></div>
+                </div>
+                </div>

@@ -1,0 +1,61 @@
+
+<div >
+
+            <div class="row" id="jbbg">
+                <div class="col-md-3" style="margin-top:80px;">
+                
+                <div style="margin-left:10px;" >
+                <button ng-click="filter()" class="btn btn-default text-center" style= "background-color:#5e5b51; color:white; width:300px;"><h5>Find Jobs By Category</h5></button>
+                </div>
+                	
+                	<div style="padding :10px 10px;">
+                        <ul class="list-group" style="list-style: none;">
+                    		<li>
+                    			<button id="Button" ng-click="filter()"  class="list-group-item btn-btn-primary text-center" style="width:300px;">All Jobs</button>
+                    		</li>
+                            <li ng-repeat="job in jobs | orderBy : 'category' as sortedCategory" data-ng-if="sortedCategory[$index-1].category!=job.category">
+                                <button id= "Button" ng-click="filter(job.category)"  class="list-group-item btn-btn-primary text-center" style="width:300px; margin-top:2px;">{{job.category}}</button>
+                            </li>
+                        </ul>
+                    </div>
+                   
+                </div>
+            <div class="col-md-7" style="background-color: #dedede;margin-top:80px; margin-bottom:80px;">
+                <ul style="list-style:none;"> 
+                    <li ng-repeat="job in jobs | orderBy :'-datePostedOn' | filter : myFilter">
+                            <div class="card" style="border:0px solid black; margin-top:20px; box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);">
+                                    <div class="card-body" style="padding:0px 30px; margin-top:10px; margin-left:5px;">
+                                    <p class="card-title"><b>{{job.jobTilte}}</b></p>
+                                    <p class="card-subtitle">{{job.companyName}}</p>
+                                    <p class="card-text">
+                                        <div class="row">
+                                            <div class="col-md-6"><i class="fa fa-briefcase"></i>&emsp;{{job.experienceFrom}}-{{job.experienceTo}}</div>
+                                            <div class="col-md-6"><i class="fa fa-map-marker"></i>&emsp;{{job.jobLocation}}</div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-12"><i class="fa fa-pencil"></i>&emsp;{{job.jobDescription | limitTo : 40}}.....</div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-6">
+                                            <div ng-show="{{job.salary}}=='0'"><i class="fa fa-money"></i>&emsp;Not&nbsp;Disclosed</div>  
+                                            <div ng-show="{{job.salary}}!='0'"><i class="fa fa-money"></i>&emsp;INR&nbsp;{{job.salary}}&nbsp;P.A</div>
+                                            </div> 
+                                            <div class="col-md-6"><i class="fa fa-calendar"></i>&emsp;<small>Posted On&nbsp;{{job.datePostedOn | date : "dd.MM.y"}}</small></div>
+                                        </div>
+                                        <div class="row" style="margin-top:15px;">
+                                            <div class="col-md-12">
+                                                <a href="#/getJob/{{job.jobId}}" class="btn btn-secondary btn-sm">View Job&nbsp;<i class="fa fa-eye"></i></a>
+                                                &emsp;&emsp;&emsp;<button ng-show="user.u_role=='ADMIN' || (user.u_phoneNumber==job.postedBy)" class="btn btn-danger btn-sm" ng-click="deleteJob(job.jobId)">Delete Job&nbsp;<i class="fa fa-trash-o"></i></button>
+                                                &emsp;&emsp;&emsp;<a ng-show="user.u_role=='ADMIN' || (user.u_phoneNumber==job.postedBy)" href="#/updateJobForm/{{job.jobId}}" class="btn btn-success btn-sm">Update Job&nbsp;<i class="fa fa-wrench"></i></a>
+                                            </div>
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-2" style="height:720px;"></div>
+        </div>
+        </div>
